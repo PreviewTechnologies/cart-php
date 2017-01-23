@@ -2,23 +2,61 @@
 
 namespace Previewtechs\Cart;
 
+/**
+ * Class CartItem
+ * @package Previewtechs\Cart
+ */
 class CartItem
 {
+    /**
+     * @var
+     */
     protected $name;
 
+    /**
+     * @var int
+     */
     protected $quantity = 1;
 
-    protected $sku;
-
-    protected $description;
-
+    /**
+     * @var
+     */
     protected $price;
 
+    /**
+     * @var
+     */
+    protected $subtotal;
+
+    /**
+     * @var
+     */
+    protected $sku;
+
+    /**
+     * @var
+     */
+    protected $description;
+
+    /**
+     * @var
+     */
     protected $note;
 
-    public function __construct($name = null)
+    /**
+     * @var array
+     */
+    protected $options = [];
+
+    /**
+     * CartItem constructor.
+     * @param $name
+     * @param $price
+     */
+    public function __construct($name = null, $price = null)
     {
         $this->name = $name;
+        $this->price = $price;
     }
 
     /**
@@ -38,7 +76,7 @@ class CartItem
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getQuantity()
     {
@@ -46,11 +84,45 @@ class CartItem
     }
 
     /**
-     * @param mixed $quantity
+     * @param int $quantity
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        $this->setSubtotal();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        $this->setSubtotal();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     *
+     */
+    public function setSubtotal()
+    {
+        $this->subtotal = (float) $this->price * $this->quantity;
     }
 
     /**
@@ -88,22 +160,6 @@ class CartItem
     /**
      * @return mixed
      */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getNote()
     {
         return $this->note;
@@ -117,4 +173,19 @@ class CartItem
         $this->note = $note;
     }
 
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
 }
