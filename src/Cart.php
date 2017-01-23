@@ -220,6 +220,10 @@ class Cart
      */
     public function setVat($vat)
     {
+        if(!is_float($vat))
+        {
+            throw new \InvalidArgumentException('Vat must be float value');
+        }
         $this->vat = $vat;
     }
 
@@ -236,6 +240,10 @@ class Cart
      */
     public function setTax($tax)
     {
+        if(!is_float($tax))
+        {
+            throw new \InvalidArgumentException('Tax must be float value');
+        }
         $this->tax = $tax;
     }
 
@@ -252,6 +260,10 @@ class Cart
      */
     public function setShippingCost($shippingCost)
     {
+        if(!is_float($shippingCost))
+        {
+            throw new \InvalidArgumentException('Shipping cost must be float value');
+        }
         $this->shippingCost = $shippingCost;
     }
 
@@ -268,6 +280,10 @@ class Cart
      */
     public function setDiscount($discount)
     {
+        if(!is_float($discount))
+        {
+            throw new \InvalidArgumentException('Discount must be float value');
+        }
         $this->discount = $discount;
     }
 

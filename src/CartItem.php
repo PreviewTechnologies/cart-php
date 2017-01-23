@@ -72,6 +72,10 @@ class CartItem
      */
     public function setName($name)
     {
+        if(strlen($name) < 1)
+        {
+            throw new \InvalidArgumentException('Name must be required');
+        }
         $this->name = $name;
     }
 
@@ -88,6 +92,10 @@ class CartItem
      */
     public function setQuantity($quantity)
     {
+        if(!is_int($quantity))
+        {
+            throw new \InvalidArgumentException('Quantity must be float value');
+        }
         $this->quantity = $quantity;
         $this->setSubtotal();
     }
@@ -105,6 +113,10 @@ class CartItem
      */
     public function setPrice($price)
     {
+        if(!is_float($price))
+        {
+            throw new \InvalidArgumentException('Price must be float value');
+        }
         $this->price = $price;
         $this->setSubtotal();
     }
