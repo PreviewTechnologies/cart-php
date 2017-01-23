@@ -1,9 +1,10 @@
 <?php
+session_start();
 
 use Previewtechs\Cart\Cart;
 use Previewtechs\Cart\CartItem;
-use Previewtechs\Cart\Storage\SessionStorage;
-//session_start();
+use Previewtechs\Cart\Storage\Session;
+
 class CartItemTests extends PHPUnit_Framework_TestCase
 {
     public function setUp()
@@ -20,16 +21,16 @@ class CartItemTests extends PHPUnit_Framework_TestCase
 
     public function testAddToCart()
     {
-        $cartItem = new CartItem();
-        $cartItem->setName('Nokia');
-        $cartItem->setSku('BLACK');
-        $cartItem->setDescription('this is test description');
-        $cartItem->setNote('this is test note');
-        $cartItem->setPrice(45.55);
+        $item = new CartItem();
+        $item->setName('Nokia');
+        $item->setSku('BLACK');
+        $item->setDescription('this is test description');
+        $item->setNote('this is test note');
+        $item->setPrice(100.00);
 
-        $sessionStorage = new SessionStorage();
+        $sessionStorage = new Session();
         $cart = new Cart('cart_name', $sessionStorage);
-        $cart->addItem($cartItem);
-        var_dump($cart->getItems());
+        $cart->addItem($item);
+        var_dump($cart->getInfo());
     }
 }
